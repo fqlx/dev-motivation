@@ -32,6 +32,6 @@ Run the script from this skill directory:
 python3 scripts/random_post.py
 ```
 
-By default, the script reads the curated list from the GitHub-hosted `posts.json` file in `FQLX/dev-motivation`.
+By default, the script reads the curated list from the GitHub-hosted `posts.json` file in `fqlx/dev-motivation`.
 
 Copy the script output into the response exactly as Markdown. Do not scrape X/Twitter, profile pages, media tabs, or post HTML. The curated data must include direct image URLs for embedding and X post URLs for attribution.
