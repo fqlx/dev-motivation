@@ -2,6 +2,8 @@ Help support this project by ⭐️'ing it! 😍
 
 # Dev Motivation
 
+![Dev Motivation demo](assets/dev-motivation-demo.png)
+
 ## Install
 
 Add the Dev Motivation marketplace:
