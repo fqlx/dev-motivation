@@ -1,5 +1,7 @@
 # Dev Motivation
 
+[Share in Codex](codex://plugins/dev-motivation?marketplacePath=%2FUsers%2Fben%2F.agents%2Fplugins%2Fmarketplace.json&mode=share) | [Manual install](#install)
+
 Dev Motivation is a Codex plugin that occasionally shows a curated SFW motivation image after hard development work.
 
 It does not scrape X/Twitter. The recommended setup is the link approach: provide direct `pbs.twimg.com` image URLs for embedding and source X post URLs for attribution.
