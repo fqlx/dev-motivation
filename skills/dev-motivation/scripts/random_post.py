@@ -13,9 +13,9 @@ from urllib.request import urlopen
 
 
 REQUIRED_FIELDS = ("handle", "post_url", "image_url")
+DEFAULT_POSTS_URL = "https://raw.githubusercontent.com/FQLX/dev-motivation/main/skills/dev-motivation/data/posts.json"
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 DEFAULT_DATA_PATH = DATA_DIR / "posts.json"
-LEGACY_EXAMPLE_DATA_PATH = DATA_DIR / "posts.example.json"
 
 
 class PostDataError(Exception):
@@ -93,9 +93,7 @@ def default_source() -> str:
     configured_source = os.environ.get("DEV_MOTIVATION_POSTS_URL") or os.environ.get("DEV_MOTIVATION_POSTS")
     if configured_source:
         return configured_source
-    if DEFAULT_DATA_PATH.exists():
-        return str(DEFAULT_DATA_PATH)
-    return str(LEGACY_EXAMPLE_DATA_PATH)
+    return DEFAULT_POSTS_URL
 
 
 def main(argv: list[str] | None = None) -> int:

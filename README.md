@@ -74,7 +74,13 @@ git -C "$HOME/plugins/dev-motivation" pull --ff-only
 
 ## Curated Data
 
-Use either a JSON object with `posts`:
+By default, the plugin reads the curated list from this repository:
+
+```text
+skills/dev-motivation/data/posts.json
+```
+
+Use a JSON object with `posts`:
 
 ```json
 {
@@ -89,8 +95,6 @@ Use either a JSON object with `posts`:
   ]
 }
 ```
-
-or a bare JSON array with the same objects.
 
 Required fields are `handle`, `post_url`, and `image_url`.
 
@@ -112,33 +116,9 @@ use the post URL as `post_url` and the direct media URL as `image_url`:
 }
 ```
 
-## Bundled Posts
+## Add Posts
 
-The plugin ships with curated posts in:
-
-```text
-skills/dev-motivation/data/posts.json
-```
-
-To add more bundled posts, append entries to that file and commit the change.
-
-## Local List
-
-To keep your own private list outside the plugin repo, copy `skills/dev-motivation/data/posts.json`, replace or add entries, and set:
-
-```bash
-export DEV_MOTIVATION_POSTS="$HOME/dev-motivation-posts.json"
-```
-
-## GitHub-Hosted List
-
-You can keep the curated JSON file in a GitHub repo and point the plugin at the raw file:
-
-```bash
-export DEV_MOTIVATION_POSTS_URL="https://raw.githubusercontent.com/<owner>/<repo>/<branch>/posts.json"
-```
-
-For private repos, prefer a local file path unless you already have a secure way to fetch the raw file.
+To add more posts, append entries to `skills/dev-motivation/data/posts.json`, commit, and push to GitHub. Installed plugins will use the GitHub-hosted list by default.
 
 ## Manual Test
 

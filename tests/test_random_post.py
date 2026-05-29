@@ -1,7 +1,9 @@
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import sys
 
@@ -68,6 +70,14 @@ class RandomPostTests(unittest.TestCase):
 
     def test_default_data_path_uses_posts_json(self):
         self.assertEqual(random_post.DEFAULT_DATA_PATH.name, "posts.json")
+
+    def test_default_source_uses_github_posts_url(self):
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(random_post.default_source(), random_post.DEFAULT_POSTS_URL)
+
+    def test_explicit_source_environment_overrides_github_default(self):
+        with patch.dict(os.environ, {"DEV_MOTIVATION_POSTS": "/tmp/posts.json"}, clear=True):
+            self.assertEqual(random_post.default_source(), "/tmp/posts.json")
 
 
 if __name__ == "__main__":
