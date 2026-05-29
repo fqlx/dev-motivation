@@ -110,9 +110,19 @@ use the post URL as `post_url` and the direct media URL as `image_url`:
 }
 ```
 
+## Bundled Posts
+
+The plugin ships with curated posts in:
+
+```text
+skills/dev-motivation/data/posts.json
+```
+
+To add more bundled posts, append entries to that file and commit the change.
+
 ## Local List
 
-Copy `skills/dev-motivation/data/posts.example.json` somewhere private, replace the sample values, and set:
+To keep your own private list outside the plugin repo, copy `skills/dev-motivation/data/posts.json`, replace or add entries, and set:
 
 ```bash
 export DEV_MOTIVATION_POSTS="$HOME/dev-motivation-posts.json"

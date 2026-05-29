@@ -36,6 +36,6 @@ The script reads curated data in this order:
 
 1. `DEV_MOTIVATION_POSTS_URL` as an HTTPS JSON URL, such as a raw GitHub file.
 2. `DEV_MOTIVATION_POSTS` as a local JSON path.
-3. The bundled `data/posts.example.json`.
+3. The bundled `data/posts.json`.
 
 Copy the script output into the response exactly as Markdown. Do not scrape X/Twitter, profile pages, media tabs, or post HTML. The curated data must include direct image URLs for embedding and X post URLs for attribution.

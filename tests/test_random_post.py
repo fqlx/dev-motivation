@@ -66,6 +66,9 @@ class RandomPostTests(unittest.TestCase):
         with self.assertRaisesRegex(random_post.PostDataError, "Invalid JSON"):
             random_post.choose_post(path, seed=1)
 
+    def test_default_data_path_uses_posts_json(self):
+        self.assertEqual(random_post.DEFAULT_DATA_PATH.name, "posts.json")
+
 
 if __name__ == "__main__":
     unittest.main()
