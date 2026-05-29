@@ -26,10 +26,3 @@ Optional:
 
 - `caption`
 - `tags`
-
-## Development
-
-```bash
-python3 -m unittest discover -s tests -v
-python3 skills/dev-motivation/scripts/random_post.py --seed 1
-```
