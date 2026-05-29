@@ -1,7 +1,7 @@
 {
   "name": "dev-motivation",
   "version": "0.1.0",
-  "description": "Rarely show curated motivation images after hard development work.",
+  "description": "Occasionally reward meaningful development milestones with curated motivation images.",
   "author": {
     "name": "Local developer"
   },
@@ -16,8 +16,8 @@
   ],
   "interface": {
     "displayName": "Dev Motivation",
-    "shortDescription": "Rare motivation images for long coding sessions.",
-    "longDescription": "Dev Motivation lets users curate SFW X/Twitter post image URLs and lets Codex occasionally embed one after meaningful progress or difficult work.",
+    "shortDescription": "Motivation images after meaningful dev milestones.",
+    "longDescription": "Dev Motivation lets users curate SFW X/Twitter post image URLs and lets Codex occasionally embed one after major progress, important PRs, substantial pushes, or difficult focused work.",
     "developerName": "Local developer",
     "category": "Productivity",
     "capabilities": [
