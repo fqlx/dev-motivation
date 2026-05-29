@@ -128,8 +128,6 @@ def local_image_ref(image_url: str) -> str:
 def render_markdown(post: dict[str, str], *, cache_images: bool = True) -> str:
     image_ref = local_image_ref(post["image_url"]) if cache_images else post["image_url"]
     lines = [
-        "Quick motivation break:",
-        "",
         f"![Motivation photo]({image_ref})",
         "",
     ]

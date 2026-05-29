@@ -53,6 +53,7 @@ class RandomPostTests(unittest.TestCase):
         markdown = random_post.render_markdown(post, cache_images=False)
 
         self.assertIn("![Motivation photo](https://pbs.twimg.com/media/example.jpg)", markdown)
+        self.assertNotIn("Quick motivation break", markdown)
         self.assertIn("Source: https://x.com/creator/status/123", markdown)
         self.assertIn("Ship the hard thing", markdown)
 
