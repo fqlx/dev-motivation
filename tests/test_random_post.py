@@ -8,7 +8,7 @@ from unittest.mock import patch
 import sys
 
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
-SCRIPT_DIR = PLUGIN_ROOT / "skills" / "dev-motivation" / "scripts"
+SCRIPT_DIR = PLUGIN_ROOT / "plugins" / "dev-motivation" / "skills" / "dev-motivation" / "scripts"
 sys.path.insert(0, str(SCRIPT_DIR))
 
 import random_post

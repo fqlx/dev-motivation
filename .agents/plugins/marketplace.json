@@ -8,7 +8,7 @@
       "name": "dev-motivation",
       "source": {
         "source": "local",
-        "path": "."
+        "path": "./plugins/dev-motivation"
       },
       "policy": {
         "installation": "AVAILABLE",

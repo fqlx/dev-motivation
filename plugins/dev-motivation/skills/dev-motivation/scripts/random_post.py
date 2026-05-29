@@ -15,7 +15,7 @@ from urllib.request import Request, urlopen
 
 
 REQUIRED_FIELDS = ("handle", "post_url", "image_url")
-DEFAULT_POSTS_URL = "https://raw.githubusercontent.com/fqlx/dev-motivation/main/skills/dev-motivation/data/posts.json"
+DEFAULT_POSTS_URL = "https://raw.githubusercontent.com/fqlx/dev-motivation/main/plugins/dev-motivation/skills/dev-motivation/data/posts.json"
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 DEFAULT_DATA_PATH = DATA_DIR / "posts.json"
 DEFAULT_CACHE_DIR = Path.home() / ".cache" / "dev-motivation" / "images"

@@ -10,7 +10,8 @@ Add the Dev Motivation marketplace:
 codex plugin marketplace add fqlx/dev-motivation
 ```
 
-Then open Codex Plugins and install/enable **Dev Motivation** from the Dev Motivation marketplace.
+Then install/enable **Dev Motivation** from the Codex Plugins screen or the Codex TUI plugin menu.
+The current public CLI exposes marketplace add/upgrade/remove commands, but not a stable `codex plugin install` command.
 
 ## Test It
 
@@ -27,13 +28,13 @@ It does not scrape X/Twitter. The plugin reads its curated post list from GitHub
 ## What It Does
 
 - Shows motivation images rarely, after meaningful progress or difficult work.
-- Uses the GitHub-hosted curated list in `skills/dev-motivation/data/posts.json`.
+- Uses the GitHub-hosted curated list in `plugins/dev-motivation/skills/dev-motivation/data/posts.json`.
 - Caches remote images under `~/.cache/dev-motivation/images` so Codex can render a local absolute image path.
 - Keeps the source X post URL attached for attribution.
 
 ## Add Posts
 
-Add entries to `skills/dev-motivation/data/posts.json`, then commit and push.
+Add entries to `plugins/dev-motivation/skills/dev-motivation/data/posts.json`, then commit and push.
 
 Each entry needs:
 
