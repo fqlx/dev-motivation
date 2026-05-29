@@ -4,9 +4,13 @@ Help support this project by ⭐️'ing it! 😍
 
 ## Install
 
+Add the Dev Motivation marketplace:
+
 ```bash
 codex plugin marketplace add fqlx/dev-motivation
 ```
+
+Then open Codex Plugins and install/enable **Dev Motivation** from the Dev Motivation marketplace.
 
 ## Test It
 
