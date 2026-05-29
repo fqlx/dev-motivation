@@ -1,6 +1,10 @@
 # Dev Motivation
 
-[Install in Codex](https://fqlx.github.io/dev-motivation/install.html)
+## Install
+
+```bash
+codex plugin marketplace add FQLX/dev-motivation
+```
 
 Dev Motivation is a Codex plugin that occasionally shows a curated SFW motivation image after hard development work.
 
