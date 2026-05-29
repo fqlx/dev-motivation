@@ -52,7 +52,7 @@ class RandomPostTests(unittest.TestCase):
         post = random_post.choose_post(path, seed=7)
         markdown = random_post.render_markdown(post, cache_images=False)
 
-        self.assertIn('<img src="https://pbs.twimg.com/media/example.jpg" alt="Motivation photo" width="520">', markdown)
+        self.assertIn("![Motivation photo](https://pbs.twimg.com/media/example.jpg)", markdown)
         self.assertIn("Source: https://x.com/creator/status/123", markdown)
         self.assertIn("Ship the hard thing", markdown)
 
@@ -72,7 +72,7 @@ class RandomPostTests(unittest.TestCase):
         self.assertEqual(len(cached_files), 1)
         self.assertEqual(cached_files[0].suffix, ".jpg")
         self.assertEqual(cached_files[0].read_bytes(), b"fake-image")
-        self.assertIn(f'<img src="{cached_files[0].resolve()}" alt="Motivation photo" width="520">', markdown)
+        self.assertIn(f"![Motivation photo]({cached_files[0].resolve()})", markdown)
 
     def test_reuses_cached_image_without_fetching(self):
         cache_root = Path(tempfile.mkdtemp())

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import html
 import json
 import os
 import random
@@ -128,11 +127,10 @@ def local_image_ref(image_url: str) -> str:
 
 def render_markdown(post: dict[str, str], *, cache_images: bool = True) -> str:
     image_ref = local_image_ref(post["image_url"]) if cache_images else post["image_url"]
-    escaped_image_ref = html.escape(image_ref, quote=True)
     lines = [
         "Quick motivation break:",
         "",
-        f'<img src="{escaped_image_ref}" alt="Motivation photo" width="520">',
+        f"![Motivation photo]({image_ref})",
         "",
     ]
     caption = post.get("caption")
