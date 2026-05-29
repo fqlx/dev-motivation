@@ -2,7 +2,7 @@ Help support this project by ⭐️'ing it! 😍
 
 # Dev Motivation
 
-![Dev Motivation demo](assets/dev-motivation-demo.png)
+![Dev Motivation demo](assets/dev-motivation-demo-dark.png)
 
 ## Install
 
