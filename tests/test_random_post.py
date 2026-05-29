@@ -9,6 +9,7 @@ import sys
 
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = PLUGIN_ROOT / "plugins" / "dev-motivation" / "skills" / "dev-motivation" / "scripts"
+PACKAGED_POSTS = PLUGIN_ROOT / "plugins" / "dev-motivation" / "skills" / "dev-motivation" / "data" / "posts.json"
 sys.path.insert(0, str(SCRIPT_DIR))
 
 import random_post
@@ -116,6 +117,17 @@ class RandomPostTests(unittest.TestCase):
 
     def test_default_data_path_uses_posts_json(self):
         self.assertEqual(random_post.DEFAULT_DATA_PATH.name, "posts.json")
+
+    def test_packaged_posts_use_varied_captions(self):
+        payload = json.loads(PACKAGED_POSTS.read_text(encoding="utf-8"))
+        captions = [
+            post["caption"]
+            for post in payload["posts"]
+            if isinstance(post.get("caption"), str) and post["caption"].strip()
+        ]
+
+        self.assertEqual(len(captions), len(payload["posts"]))
+        self.assertGreater(len(set(captions)), 10)
 
     def test_default_source_uses_github_posts_url(self):
         with patch.dict(os.environ, {}, clear=True):
