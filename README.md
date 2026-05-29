@@ -1,3 +1,5 @@
+Help support this project by ⭐️'ing it! 😍
+
 # Dev Motivation
 
 ## Install
