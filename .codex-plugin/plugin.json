@@ -1,0 +1,33 @@
+{
+  "name": "dev-motivation",
+  "version": "0.1.0",
+  "description": "Rarely show curated motivation images after hard development work.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "license": "MIT",
+  "keywords": [
+    "motivation",
+    "developer-tools",
+    "codex",
+    "x",
+    "twitter"
+  ],
+  "interface": {
+    "displayName": "Dev Motivation",
+    "shortDescription": "Rare motivation images for long coding sessions.",
+    "longDescription": "Dev Motivation lets users curate SFW X/Twitter post image URLs and lets Codex occasionally embed one after meaningful progress or difficult work.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Show a dev motivation image.",
+      "Use a motivation break after this hard task."
+    ],
+    "brandColor": "#E11D48"
+  }
+}

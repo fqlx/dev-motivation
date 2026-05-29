@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "handle": "example_creator",
+      "post_url": "https://x.com/example_creator/status/1234567890",
+      "image_url": "https://pbs.twimg.com/media/example.jpg",
+      "caption": "Replace this example with a real SFW direct image URL from a post you want to curate.",
+      "tags": [
+        "example"
+      ]
+    }
+  ]
+}
