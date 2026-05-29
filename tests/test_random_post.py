@@ -38,9 +38,24 @@ class RandomPostTests(unittest.TestCase):
         post = random_post.choose_post(path, seed=7)
         markdown = random_post.render_markdown(post)
 
-        self.assertIn("![Motivation photo](https://pbs.twimg.com/media/example.jpg)", markdown)
+        self.assertIn(
+            "![Motivation photo](https://images.weserv.nl/?url=https%3A%2F%2Fpbs.twimg.com%2Fmedia%2Fexample.jpg)",
+            markdown,
+        )
         self.assertIn("Source: https://x.com/creator/status/123", markdown)
         self.assertIn("Ship the hard thing", markdown)
+
+    def test_leaves_non_twitter_image_urls_direct(self):
+        markdown = random_post.render_markdown({
+            "handle": "creator",
+            "post_url": "https://x.com/creator/status/123",
+            "image_url": "https://raw.githubusercontent.com/fqlx/dev-motivation/main/assets/example.jpg",
+        })
+
+        self.assertIn(
+            "![Motivation photo](https://raw.githubusercontent.com/fqlx/dev-motivation/main/assets/example.jpg)",
+            markdown,
+        )
 
     def test_skips_invalid_entries(self):
         path = self.write_posts([

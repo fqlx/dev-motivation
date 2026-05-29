@@ -9,11 +9,14 @@ import sys
 from pathlib import Path
 from typing import Any
 from urllib.error import URLError
+from urllib.parse import quote, urlparse
 from urllib.request import urlopen
 
 
 REQUIRED_FIELDS = ("handle", "post_url", "image_url")
 DEFAULT_POSTS_URL = "https://raw.githubusercontent.com/fqlx/dev-motivation/main/skills/dev-motivation/data/posts.json"
+IMAGE_PROXY_BASE_URL = "https://images.weserv.nl/?url="
+TWITTER_MEDIA_HOSTS = {"pbs.twimg.com"}
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 DEFAULT_DATA_PATH = DATA_DIR / "posts.json"
 
@@ -75,11 +78,18 @@ def choose_post(source: str | Path, seed: int | None = None) -> dict[str, str]:
     return rng.choice(posts)
 
 
+def render_image_url(image_url: str) -> str:
+    parsed = urlparse(image_url)
+    if parsed.hostname in TWITTER_MEDIA_HOSTS:
+        return f"{IMAGE_PROXY_BASE_URL}{quote(image_url, safe='')}"
+    return image_url
+
+
 def render_markdown(post: dict[str, str]) -> str:
     lines = [
         "Quick motivation break:",
         "",
-        f"![Motivation photo]({post['image_url']})",
+        f"![Motivation photo]({render_image_url(post['image_url'])})",
         "",
     ]
     caption = post.get("caption")
