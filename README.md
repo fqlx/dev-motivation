@@ -10,9 +10,6 @@ Add the Dev Motivation marketplace:
 codex plugin marketplace add fqlx/dev-motivation
 ```
 
-Then install/enable **Dev Motivation** from the Codex Plugins screen or the Codex TUI plugin menu.
-The current public CLI exposes marketplace add/upgrade/remove commands, but not a stable `codex plugin install` command.
-
 ## Test It
 
 Ask Codex:
