@@ -6,6 +6,14 @@
 codex plugin marketplace add fqlx/dev-motivation
 ```
 
+## Test It
+
+Ask Codex:
+
+```text
+Show a dev motivation image.
+```
+
 Dev Motivation is a Codex plugin that occasionally shows a curated SFW motivation image after hard development work.
 
 It does not scrape X/Twitter. The plugin reads its curated post list from GitHub by default and embeds direct `pbs.twimg.com` image URLs with source X post attribution.
