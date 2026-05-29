@@ -16,13 +16,13 @@ Show a dev motivation image.
 
 Dev Motivation is a Codex plugin that occasionally shows a curated SFW motivation image after hard development work.
 
-It does not scrape X/Twitter. The plugin reads its curated post list from GitHub by default, renders curated image URLs inline, and keeps source X post attribution.
+It does not scrape X/Twitter. The plugin reads its curated post list from GitHub by default, downloads the chosen image into a local cache, renders that local file inline, and keeps source X post attribution.
 
 ## What It Does
 
 - Shows motivation images rarely, after meaningful progress or difficult work.
 - Uses the GitHub-hosted curated list in `skills/dev-motivation/data/posts.json`.
-- Proxies X/Twitter media URLs when needed so Codex can render them inline.
+- Caches remote images under `~/.cache/dev-motivation/images` so Codex can render a local absolute image path.
 - Keeps the source X post URL attached for attribution.
 
 ## Add Posts

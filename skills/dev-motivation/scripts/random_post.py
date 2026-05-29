@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import random
@@ -9,16 +10,16 @@ import sys
 from pathlib import Path
 from typing import Any
 from urllib.error import URLError
-from urllib.parse import quote, urlparse
-from urllib.request import urlopen
+from urllib.parse import parse_qs, urlparse
+from urllib.request import Request, urlopen
 
 
 REQUIRED_FIELDS = ("handle", "post_url", "image_url")
 DEFAULT_POSTS_URL = "https://raw.githubusercontent.com/fqlx/dev-motivation/main/skills/dev-motivation/data/posts.json"
-IMAGE_PROXY_BASE_URL = "https://images.weserv.nl/?url="
-TWITTER_MEDIA_HOSTS = {"pbs.twimg.com"}
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 DEFAULT_DATA_PATH = DATA_DIR / "posts.json"
+DEFAULT_CACHE_DIR = Path.home() / ".cache" / "dev-motivation" / "images"
+SUPPORTED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 
 
 class PostDataError(Exception):
@@ -78,18 +79,58 @@ def choose_post(source: str | Path, seed: int | None = None) -> dict[str, str]:
     return rng.choice(posts)
 
 
-def render_image_url(image_url: str) -> str:
+def cache_dir() -> Path:
+    configured_cache_dir = os.environ.get("DEV_MOTIVATION_CACHE_DIR")
+    if configured_cache_dir:
+        return Path(configured_cache_dir).expanduser()
+    return DEFAULT_CACHE_DIR
+
+
+def image_extension(image_url: str) -> str:
     parsed = urlparse(image_url)
-    if parsed.hostname in TWITTER_MEDIA_HOSTS:
-        return f"{IMAGE_PROXY_BASE_URL}{quote(image_url, safe='')}"
-    return image_url
+    suffix = Path(parsed.path).suffix.lower()
+    if suffix in SUPPORTED_IMAGE_EXTENSIONS:
+        return suffix
+
+    format_values = parse_qs(parsed.query).get("format", [])
+    if format_values:
+        format_suffix = f".{format_values[0].lower()}"
+        if format_suffix in SUPPORTED_IMAGE_EXTENSIONS:
+            return format_suffix
+
+    return ".jpg"
 
 
-def render_markdown(post: dict[str, str]) -> str:
+def cached_image_path(image_url: str) -> Path:
+    digest = hashlib.sha256(image_url.encode("utf-8")).hexdigest()[:24]
+    return cache_dir() / f"{digest}{image_extension(image_url)}"
+
+
+def local_image_ref(image_url: str) -> str:
+    parsed = urlparse(image_url)
+    if parsed.scheme not in {"http", "https"}:
+        return image_url
+
+    destination = cached_image_path(image_url)
+    if not destination.exists():
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        request = Request(image_url, headers={"User-Agent": "dev-motivation/0.1"})
+        try:
+            with urlopen(request, timeout=20) as response:
+                data = response.read()
+            destination.write_bytes(data)
+        except (OSError, URLError) as exc:
+            raise PostDataError(f"Unable to cache motivation image from {image_url}: {exc}") from exc
+
+    return str(destination.resolve())
+
+
+def render_markdown(post: dict[str, str], *, cache_images: bool = True) -> str:
+    image_ref = local_image_ref(post["image_url"]) if cache_images else post["image_url"]
     lines = [
         "Quick motivation break:",
         "",
-        f"![Motivation photo]({render_image_url(post['image_url'])})",
+        f"![Motivation photo]({image_ref})",
         "",
     ]
     caption = post.get("caption")
@@ -114,11 +155,12 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         post = choose_post(args.source, seed=args.seed)
+        markdown = render_markdown(post)
     except PostDataError as exc:
         print(f"dev-motivation: {exc}", file=sys.stderr)
         return 1
 
-    print(render_markdown(post))
+    print(markdown)
     return 0
 
 

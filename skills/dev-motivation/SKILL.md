@@ -34,4 +34,4 @@ python3 scripts/random_post.py
 
 By default, the script reads the curated list from the GitHub-hosted `posts.json` file in `fqlx/dev-motivation`.
 
-Copy the script output into the response exactly as Markdown. Do not scrape X/Twitter, profile pages, media tabs, or post HTML. The curated data must include direct image URLs for embedding and X post URLs for attribution.
+Copy the script output into the response exactly as Markdown. The script caches the selected remote image locally and emits an absolute local image path for Codex to render. Do not scrape X/Twitter, profile pages, media tabs, or post HTML. The curated data must include direct image URLs for caching and X post URLs for attribution.
